@@ -138,7 +138,7 @@
     background-color: rgba(255, 255, 255, 0);
   }
   100% {
-    background-color: rgb(255, 255, 255);
+    background-color: #ffffff;
   }
 }
 @keyframes getscreencolor {
@@ -149,7 +149,7 @@
     background-color: rgba(255, 255, 255, 0);
   }
   100% {
-    background-color: rgb(255, 255, 255);
+    background-color: #ffffff;
   }
 }
 @-webkit-keyframes getscreencontainer {

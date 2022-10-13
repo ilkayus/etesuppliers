@@ -58,7 +58,7 @@ const Register = () => {
       form.passwordConfirm
     );
     setAuth(res);
-    navigate(from, { replace: true });
+    navigate("from", { replace: true });
   };
 
   return (

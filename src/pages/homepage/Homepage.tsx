@@ -9,7 +9,7 @@ const Homepage = () => {
       <Components.Header />
       <Components.Navbar />
       <Routes>
-        <Route path="/" element={<Components.Home />} />
+        <Route path="/home" element={<Components.Home />} />
         <Route path="/companies" element={<Components.Companies />} />
         <Route path="/companies/:id" element={<Components.Company />} />
         <Route path="/products" element={<Components.Products />} />

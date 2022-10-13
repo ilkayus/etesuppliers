@@ -9,16 +9,16 @@ function App() {
   const roles = new Set(["user", "manager", "admin"]);
   return (
     <Routes>
-      <Route path="/" element={<Layout />}>
-        <Route path="/login" element={<Pages.Login />} />
-        <Route path="/register" element={<Pages.Register />} />
-        <Route path="/unauthorized" element={<Components.Unauthorized />} />
-        {/* Protected routes */}
-        <Route element={<Components.RequireAuth allowedRoles={roles} />}>
-          <Route path="/" element={<Pages.Homepage />} />
-        </Route>
+      {/* <Route path="/" element={<Layout />}> */}
+      <Route path="/login" element={<Pages.Login />} />
+      <Route path="/register" element={<Pages.Register />} />
+      <Route path="/unauthorized" element={<Components.Unauthorized />} />
+      {/* Protected routes */}
+      <Route element={<Components.RequireAuth allowedRoles={roles} />}>
+        <Route path="/*" element={<Pages.Homepage />} />
       </Route>
       <Route path="/*" element={<Components.Missing />} />
+      {/* </Route> */}
     </Routes>
     // <main className="App">
     //   <Routes>

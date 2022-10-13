@@ -58,7 +58,7 @@ const Login = () => {
               type="email"
               name="email"
               placeholder="Email"
-              autoComplete="off"
+              // autoComplete="off"
               className={
                 form.email.length > 0
                   ? emailValid

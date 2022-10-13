@@ -11,6 +11,8 @@ import Product from "./homepage/Product";
 import Missing from "./homepage/Missing";
 import Unauthorized from "./homepage/Unauthorized";
 
+import Table from "./table/Table";
+
 const Components = {
   AnimatedLogo,
   RequireAuth,
@@ -23,6 +25,7 @@ const Components = {
   Product,
   Missing,
   Unauthorized,
+  Table,
 };
 
 export default Components;
