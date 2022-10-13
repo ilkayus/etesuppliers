@@ -1,7 +1,7 @@
-import { useState, useEffect, useContext } from "react";
-import { useNavigate } from "react-router-dom";
-// import cocktailAPI from "services";
-// import UserContext from "contextAPI/UserContext";
+import { useState, useEffect } from "react";
+import { useNavigate, Link, useLocation } from "react-router-dom";
+import API from "api";
+import useAuth from "hooks/useAuth";
 import "./style/Login.css";
 import * as authHelpers from "./authorization.helper";
 import Components from "components";
@@ -10,8 +10,12 @@ import { icons } from "images";
 export interface Props {}
 
 const Login = () => {
-  // const navigate = useNavigate();
-  //   const { user, setUser } = useContext(UserContext);
+  const { setAuth } = useAuth();
+
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+
   const [emailValid, setEmailValid] = useState(false);
   const [passwordValid, setPasswordValid] = useState(false);
 
@@ -35,20 +39,15 @@ const Login = () => {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     if (!emailValid || !passwordValid) return;
-    // const res = await cocktailAPI.authorization.signUp(
-    //   form.email,
-    //   form.username,
-    //   form.password,
-    //   form.passwordConfirm
-    // );
-    // setUser(res);
-    // navigate("/");
+    const res = await API.auth.login(form.email, form.password);
+    setAuth(res);
+    navigate(from, { replace: true });
   };
 
   return (
     <section className="si--page">
-      <div className="si--container">
-        <Components.AnimatedLogo />
+      <div className="si--container si--container-login">
+        <Components.AnimatedLogo page="login" />
         <h1>Login</h1>
         <form method="post" onSubmit={handleSubmit}>
           <label htmlFor="username" className="username">
@@ -103,7 +102,7 @@ const Login = () => {
             <button
               type="button"
               className="create-account-button"
-              // onClick={() => navigate("/signup")}
+              onClick={() => navigate("/register")}
             >
               Register
             </button>

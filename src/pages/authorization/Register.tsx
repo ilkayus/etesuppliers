@@ -1,7 +1,7 @@
-import { useState, useEffect, useContext } from "react";
-import { useNavigate } from "react-router-dom";
-// import cocktailAPI from "services";
-// import UserContext from "contextAPI/UserContext";
+import { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import API from "api";
+import useAuth from "hooks/useAuth";
 import "./style/Login.css";
 import * as authHelpers from "./authorization.helper";
 import Components from "components";
@@ -10,8 +10,12 @@ import { icons } from "images";
 export interface Props {}
 
 const Register = () => {
-  // const navigate = useNavigate();
-  //   const { user, setUser } = useContext(UserContext);
+  const { setAuth } = useAuth();
+
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+
   const [emailValid, setEmailValid] = useState(false);
   const [passwordValid, setPasswordValid] = useState(false);
   const [usernameValid, setUsernameValid] = useState(false);
@@ -47,23 +51,23 @@ const Register = () => {
       !passwordConfirmValid
     )
       return;
-    // const res = await cocktailAPI.authorization.signUp(
-    //   form.email,
-    //   form.username,
-    //   form.password,
-    //   form.passwordConfirm
-    // );
-    // setUser(res);
-    // navigate("/");
+    const res = await API.auth.register(
+      form.email,
+      form.username,
+      form.password,
+      form.passwordConfirm
+    );
+    setAuth(res);
+    navigate(from, { replace: true });
   };
 
   return (
     <section className="si--page">
-      <div className="si--container">
-        <Components.AnimatedLogo />
+      <div className="si--container si--container-register">
+        <Components.AnimatedLogo page="register" />
         <h1>Register</h1>
         <form method="post" onSubmit={handleSubmit}>
-          <label htmlFor="username" className="username">
+          <label htmlFor="username" className="username username-register">
             <span className="username-icon">
               <img src={icons.user} alt="username icon" />
             </span>
@@ -71,6 +75,7 @@ const Register = () => {
               type="text"
               name="username"
               placeholder="Username"
+              autoComplete="off"
               className={
                 form.username.length > 0
                   ? usernameValid
@@ -92,6 +97,7 @@ const Register = () => {
               type="email"
               name="email"
               placeholder="Email"
+              autoComplete="off"
               className={
                 form.email.length > 0
                   ? emailValid
@@ -126,7 +132,10 @@ const Register = () => {
               onChange={handleChange}
             />
           </label>
-          <label htmlFor="passwordConfirm" className="username">
+          <label
+            htmlFor="passwordConfirm"
+            className="username username-register"
+          >
             <span className="username-icon">
               <img src={icons.envelop} alt="password icon" />
             </span>
@@ -156,7 +165,7 @@ const Register = () => {
             <button
               type="button"
               className="create-account-button"
-              // onClick={() => navigate("/signin")}
+              onClick={() => navigate("/login")}
             >
               Login
             </button>
