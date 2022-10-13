@@ -1,5 +1,55 @@
+import { IUserData } from "types/authorization.interface";
+
 const BASE_URL = "http://localhost:9000/api/v1";
 const REGISTER_URL = "/users/register";
 const LOGIN_URL = "/users/login";
+const NEW_COMPANY_URL = "/companies/new";
+const GET_COMPANY_URL = "/companies/get";
+const REMOVE_COMPANY_URL = "/companies/remove";
+const UPDATE_COMPANY_URL = "/companies/update";
+const NEW_PRODUCT_URL = "/products/new";
+const GET_PRODUCT_URL = "/products/get";
+const REMOVE_PRODUCT_URL = "/products/remove";
+const UPDATE_PRODUCT_URL = "/products/update";
 
-export { BASE_URL, REGISTER_URL, LOGIN_URL };
+//-----------------------------------------------
+const setHeader = (token: string | undefined): any => {
+  const config = {
+    headers: {
+      Authorization: "Bearer " + token,
+    },
+  };
+  return config;
+};
+//-----------------------------------------------
+const checkUser = (user: IUserData | undefined): any => {
+  const config = user
+    ? {
+        headers: {
+          Authorization: "Bearer " + user.token,
+        },
+      }
+    : {};
+  return config;
+};
+//-----------------------------------------------
+const urlBuilder = (fetchString: string, fetchInfo: string) => {
+  return `${fetchString}/${fetchInfo}`;
+};
+//-----------------------------------------------
+
+const urlHelper = {
+  BASE_URL,
+  REGISTER_URL,
+  LOGIN_URL,
+  NEW_COMPANY_URL,
+  GET_COMPANY_URL,
+  REMOVE_COMPANY_URL,
+  UPDATE_COMPANY_URL,
+  NEW_PRODUCT_URL,
+  GET_PRODUCT_URL,
+  REMOVE_PRODUCT_URL,
+  UPDATE_PRODUCT_URL,
+};
+
+export { urlHelper, checkUser, urlBuilder, setHeader };

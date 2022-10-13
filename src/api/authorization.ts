@@ -1,6 +1,6 @@
 import axios from "axios";
 import { IUserData } from "types/authorization.interface";
-import * as urlHelper from "api/api.helpers";
+import { urlHelper } from "api/api.helpers";
 
 const login = async (email: string, password: string): Promise<IUserData> => {
   const url = urlHelper.BASE_URL + urlHelper.LOGIN_URL;

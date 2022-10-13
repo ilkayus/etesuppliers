@@ -1,11 +1,11 @@
 import React from "react";
 import Components from "components";
+import { icons } from "images";
 
 const Home = () => {
   return (
     <main className="home">
-      <div className="home-section page-info">
-        <h2>Page</h2>
+      <div className="home-section">
         <h1>Home</h1>
         <p>
           Lorem, ipsum dolor sit amet consectetur adipisicing elit. At vero,

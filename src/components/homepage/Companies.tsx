@@ -1,11 +1,34 @@
-import React from "react";
+import { useState, useEffect } from "react";
 import Components from "components";
+import { ICompanyData } from "types/company.interface";
+import useAuth from "hooks/useAuth";
+import API from "api";
 
 const Companies = () => {
+  const { auth } = useAuth();
+  const [company, setCompany] = useState<ICompanyData>({
+    _id: undefined,
+    name: "Microsoft",
+    legalNumber: "60000254782154",
+    photo:
+      "https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg",
+    incorporationCountry: "USA",
+    website: "https://www.microsoft.com/",
+    description:
+      "Microsoft Corporation is an American multinational technology corporation which produces computer software, consumer electronics, personal computers, and related services headquartered at the Microsoft Redmond campus located in Redmond, Washington, United States. Its best-known software products are the Windows line of operating systems, the Microsoft Office suite, and the Internet Explorer and Edge web browsers. Its flagship hardware products are the Xbox video game consoles and the Microsoft Surface lineup of touchscreen personal computers. Microsoft ranked No. 21 in the 2020 Fortune 500 rankings of the largest United States corporations by total revenue;[2] it was the world's largest software maker by revenue as of 2019. It is one of the Big Five American information technology companies, alongside Alphabet, Amazon, Apple, and Meta.",
+    createdAt: new Date(),
+  });
+  //useEffect(() => {}, []);
+
+  const makeRequest = async (companyData: ICompanyData) => {
+    const res = await API.company.createCompany(auth?.token, companyData);
+    console.log(res);
+  };
+
   return (
     <main className="company">
-      <div className="company-section page-info">
-        <h2>Page</h2>
+      <div className="company-section">
+        <button onClick={() => makeRequest(company)}>DAAAAT</button>
         <h1>Companies</h1>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat
