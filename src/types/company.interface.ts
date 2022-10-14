@@ -1,5 +1,5 @@
 export interface ICompanyData {
-  _id: string | undefined;
+  _id?: string | undefined;
   name: string;
   legalNumber: string;
   photo?: string;

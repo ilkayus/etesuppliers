@@ -29,19 +29,19 @@ const Home = () => {
       <div className="home-section companies">
         <h2>Last Added Companies:</h2>
         <div className="table-container">
-          <Components.Table />
+          {/* <Components.Table data={"2"} /> */}
         </div>
       </div>
       <div className="home-section products-of-company">
         <h2>Last Added Products:</h2>
         <div className="table-container">
-          <Components.Table />
+          {/* <Components.Table data={"2"} /> */}
         </div>
       </div>
       <div className="home-section user-activity">
         <h2>Last Activities:</h2>
         <div className="table-container">
-          <Components.Table />
+          {/* <Components.Table data={"2"} /> */}
         </div>
       </div>
     </main>

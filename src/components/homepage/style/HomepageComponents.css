@@ -158,6 +158,93 @@
   width: 36px;
 }
 
+.product {
+  overflow: hidden;
+  display: grid;
+  gap: 10px;
+  padding: 15px 30px 0px 15px;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: auto 4% auto;
+  color: #efefef;
+}
+.product .product-description {
+  grid-row: 1/2;
+  grid-column: 1/2;
+}
+.product .products-all {
+  grid-row: 3/4;
+  grid-column: 1/3;
+  height: 40vh;
+  transition: all 0.6s linear;
+}
+.product .product-selected {
+  grid-row: 1/2;
+  grid-column: 2/3;
+}
+.product .grid-changer {
+  grid-row: 2/3;
+  grid-column: 1/3;
+  overflow: auto;
+  margin: 0px;
+  padding: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #222222;
+  transition: background-color 0.4s;
+}
+.product .grid-changer img {
+  height: 48px;
+  width: 48px;
+  transition: all 0.6s;
+}
+.product .grid-changer:hover {
+  background-color: #676969;
+  cursor: pointer;
+  transition: background-color 0.4s;
+}
+.product .table-container {
+  padding-right: 30px;
+}
+.product .table-header {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.product .table-header .table-header-buttons {
+  position: absolute;
+  bottom: 1px;
+  right: 0;
+  padding-right: 30px;
+}
+.product .table-header .table-header-buttons button {
+  font-size: 1.2rem;
+  border: 1px solid transparent;
+  margin-left: 3px;
+  margin-bottom: 4px;
+  margin-right: 1px;
+  color: #efefef;
+  width: 120px;
+  border-radius: 10px;
+  height: 2.5rem;
+  cursor: pointer;
+  background: linear-gradient(to bottom, rgb(24, 80, 68), rgba(52, 119, 104, 0.8666666667));
+}
+.product .table-header .table-header-buttons button:hover {
+  background: linear-gradient(to bottom, rgba(204, 251, 241, 0.5), rgb(24, 80, 68));
+}
+
+.product-animated .products-all {
+  height: 80vh;
+  transition: all 0.6s linear;
+}
+.product-animated .grid-changer > img {
+  transform: rotate(180deg);
+  transition: all 0.6s;
+}
+
 .company,
 .home {
   overflow: hidden;
@@ -169,6 +256,8 @@
   color: #efefef;
 }
 
+.grid-changer,
+.product-section,
 .home-section,
 .company-section {
   overflow: scroll;
@@ -177,6 +266,7 @@
   border-radius: 10px;
 }
 
+.product-section > p,
 .home-section > p,
 .company-section > p {
   font-size: 1.2rem;
@@ -184,10 +274,13 @@
   font-weight: 300;
 }
 
+.product-section > h2,
+.product-section > h1,
 .home-section > h2,
 .company-section > h2,
 .home-section > h1,
 .company-section > h1 {
   padding: 0 10px;
   font-weight: 400;
+  color: #efefef;
 }/*# sourceMappingURL=HomepageComponents.css.map */

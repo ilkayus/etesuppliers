@@ -17,6 +17,7 @@ import loggedinIcon from "./icons/user-white.svg";
 import loginIcon from "./icons/user-login.svg";
 import envelopIcon from "./icons/envelop.svg";
 import rightArrowIcon from "./icons/right-arrow.svg";
+import upArrow from "./icons/up-arrow.svg";
 import lockOpenIcon from "./icons/lock-open.svg";
 import loginBackground from "./background/cube-right-bottom.png";
 
@@ -38,6 +39,7 @@ const icons = {
   product: productIcon,
   home: homeIcon,
   powerOff: powerOff,
+  upArrow: upArrow,
 };
 
 const logo = {
