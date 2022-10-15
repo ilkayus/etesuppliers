@@ -7,7 +7,10 @@ export interface ICompanyData {
   website: string;
   description?: string;
   fields?: string[];
-  owner?: string;
+  owner?: {
+    username: string;
+    _id: string;
+  };
   products?: string[];
   createdAt?: Date;
 }

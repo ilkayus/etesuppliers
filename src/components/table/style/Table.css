@@ -1,6 +1,7 @@
 .table-table table {
   border-collapse: collapse;
   width: 100%;
+  cursor: pointer;
 }
 .table-table table td,
 .table-table table th {
@@ -17,6 +18,11 @@
 }
 .table-table table tr:nth-child(odd) {
   background-color: #232323;
+}
+.table-table tr.selected-row {
+  background-color: rgba(244, 63, 94, 0.5) !important;
+  -webkit-animation: blink-animation 1.4s ease-in-out infinite;
+          animation: blink-animation 1.4s ease-in-out infinite;
 }
 .table-table table tr:hover {
   background-color: #444;
@@ -38,9 +44,63 @@
   font-size: 1.2rem;
   font-weight: 400;
 }
+.table-table table tr a {
+  color: #efefef;
+}
 .table-table .positive {
   color: green;
 }
 .table-table .negative {
   color: red;
+}
+.table-table .sort-arrows {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.table-table .sort-arrows .up,
+.table-table .sort-arrows .down,
+.table-table .sort-arrows .up-op,
+.table-table .sort-arrows .down-op {
+  position: absolute;
+  height: 14px;
+  width: 14px;
+  right: -6px;
+}
+.table-table .sort-arrows .up,
+.table-table .sort-arrows .up-op {
+  top: 0px;
+}
+.table-table .sort-arrows .down,
+.table-table .sort-arrows .down-op {
+  top: 14px;
+  transform: rotate(180deg);
+}
+.table-table .sort-arrows .up-op,
+.table-table .sort-arrows .down-op {
+  opacity: 0.2;
+}
+
+@-webkit-keyframes blink-animation {
+  0% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.7;
+  }
+}
+
+@keyframes blink-animation {
+  0% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.7;
+  }
 }/*# sourceMappingURL=Table.css.map */

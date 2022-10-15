@@ -28,7 +28,7 @@ const createProduct = async (
   const url = urlHelper.BASE_URL + urlHelper.NEW_PRODUCT_URL;
   const response = await axios.post(
     url,
-    { ...productData },
+    { ...productData, createdAt: new Date() },
     setHeader(user?.token)
   );
   console.log(response);
@@ -36,8 +36,8 @@ const createProduct = async (
 };
 
 const getOneProduct = async (
-  id: string,
-  user: IUserData | undefined
+  user: IUserData | undefined,
+  id: string
 ): Promise<IProductData> => {
   const url = urlHelper.BASE_URL + urlHelper.GET_PRODUCT_URL + `/${id}`;
   const response = await axios.get(url, setHeader(user?.token));
@@ -45,7 +45,7 @@ const getOneProduct = async (
   return response.data.data;
 };
 
-const deleteProduct = async (id: string, user: IUserData | undefined) => {
+const deleteProduct = async (user: IUserData | undefined, id: string) => {
   const url = urlHelper.BASE_URL + urlHelper.REMOVE_PRODUCT_URL + `/${id}`;
   const response = await axios.delete(url, setHeader(user?.token));
   console.log(response);
@@ -53,14 +53,14 @@ const deleteProduct = async (id: string, user: IUserData | undefined) => {
 };
 
 const updateProduct = async (
-  productData: IProductData,
-  user: IUserData | undefined
+  user: IUserData | undefined,
+  productData: IProductData
 ): Promise<IProductData> => {
   const url =
     urlHelper.BASE_URL + urlHelper.UPDATE_PRODUCT_URL + `/${productData._id}`;
   const response = await axios.patch(
     url,
-    { ...productData },
+    { ...productData, createdAt: new Date() },
     setHeader(user?.token)
   );
   console.log(response);

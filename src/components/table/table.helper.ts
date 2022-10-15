@@ -1,51 +1,48 @@
-import { JsxElement } from "typescript";
-
-const tableColumns = {
-  company: [
-    {
-      key: 1,
-      title: "Name",
-      dataIndex: "name",
-    },
-    {
-      key: 2,
-      title: "Legal Number",
-      dataIndex: "legalNumber",
-    },
-    {
-      key: 3,
-      title: "Website",
-      dataIndex: "website",
-    },
-    {
-      key: 4,
-      title: "Inc.Country",
-      dataIndex: "incorporationCountry",
-    },
-    {
-      key: 5,
-      title: "Owner",
-      dataIndex: "owner",
-    },
-    {
-      key: 6,
-      title: "Added",
-      dataIndex: "createdAt",
-    },
-  ],
-};
+// const tableColumns = {
+//   company: [
+//     {
+//       key: 1,
+//       title: "Name",
+//       dataIndex: "name",
+//     },
+//     {
+//       key: 2,
+//       title: "Legal Number",
+//       dataIndex: "legalNumber",
+//     },
+//     {
+//       key: 3,
+//       title: "Website",
+//       dataIndex: "website",
+//     },
+//     {
+//       key: 4,
+//       title: "Inc.Country",
+//       dataIndex: "incorporationCountry",
+//     },
+//     {
+//       key: 5,
+//       title: "Owner",
+//       dataIndex: "owner",
+//     },
+//     {
+//       key: 6,
+//       title: "Added",
+//       dataIndex: "createdAt",
+//     },
+//   ],
+// };
 
 const tableHeaders = {
-  product: [
+  product: ["Logo", "Name", "Category", "Amount", "Unit", "Company", "Created"],
+  company: [
     "Logo",
     "Name",
-    "Category",
-    "Amount",
-    "Unit",
-    "Company",
-    "Createdted",
+    "Legal Number",
+    "Website",
+    "Inc.Country",
+    "Created",
   ],
-  company: ["Logo", "Name", "Legal N.", "Website", "Inc.Country", "Creadted"],
 };
 const tableKeys = {
   product: [
@@ -57,7 +54,14 @@ const tableKeys = {
     "company",
     "createdAt",
   ],
-  company: ["Logo", "Name", "Legal N.", "Website", "Inc.Country", "Creadted"],
+  company: [
+    "photo",
+    "name",
+    "legalNumber",
+    "website",
+    "incorporationCountry",
+    "createdAt",
+  ],
 };
 
 const ago = (createDate: any) => {

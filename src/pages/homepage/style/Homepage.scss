@@ -2,8 +2,9 @@
 
 .homepage {
   padding: 5px;
-  width: 100vw;
-  height: 100vh;
+  width: 125vw;
+  height: 125vh;
+  zoom: 0.8;
   display: grid;
   gap: 10px;
   grid-template-columns: 350px 1fr 1fr 1fr 1fr;

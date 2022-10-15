@@ -9,6 +9,7 @@ const getAllCompanies = async (
   const config = checkUser(user);
   const url = urlHelper.BASE_URL + urlHelper.GET_COMPANY_ALL_URL;
   const response = await axios.get(url, config);
+  console.log(response.data);
   return response.data.data;
 };
 
@@ -35,7 +36,7 @@ const createCompany = async (
       incorporationCountry: companyData.incorporationCountry,
       website: companyData.website,
       description: companyData.description,
-      createdAt: companyData.createdAt,
+      createdAt: new Date(),
     },
     setHeader(user?.token)
   );
@@ -44,8 +45,8 @@ const createCompany = async (
 };
 
 const getOneCompany = async (
-  id: string,
-  user: IUserData | undefined
+  user: IUserData | undefined,
+  id: string
 ): Promise<ICompanyData> => {
   const url = urlHelper.BASE_URL + urlHelper.GET_COMPANY_URL + `/${id}`;
   const response = await axios.get(url, setHeader(user?.token));
@@ -53,7 +54,7 @@ const getOneCompany = async (
   return response.data.data;
 };
 
-const deleteCompany = async (id: string, user: IUserData | undefined) => {
+const deleteCompany = async (user: IUserData | undefined, id: string) => {
   const url = urlHelper.BASE_URL + urlHelper.REMOVE_COMPANY_URL + `/${id}`;
   const response = await axios.delete(url, setHeader(user?.token));
   console.log(response);
@@ -61,14 +62,14 @@ const deleteCompany = async (id: string, user: IUserData | undefined) => {
 };
 
 const updateCompany = async (
-  companyData: ICompanyData,
-  user: IUserData | undefined
+  user: IUserData | undefined,
+  companyData: ICompanyData
 ): Promise<ICompanyData> => {
   const url =
     urlHelper.BASE_URL + urlHelper.UPDATE_COMPANY_URL + `/${companyData._id}`;
   const response = await axios.patch(
     url,
-    { ...companyData },
+    { ...companyData, createdAt: new Date() },
     setHeader(user?.token)
   );
   console.log(response);

@@ -18,6 +18,8 @@ const GET_PRODUCT_URL = "/products/getone";
 const GET_PRODUCT_ALL_URL = "/products/getall";
 const GET_PRODUCT_LAST_URL = "/products/getlast";
 
+const GET_COMPANY_LIST_URL = "/search/companylist";
+
 //-----------------------------------------------
 const setHeader = (token: string | undefined): any => {
   const config = {
@@ -60,6 +62,7 @@ const urlHelper = {
   GET_COMPANY_LAST_URL,
   GET_PRODUCT_ALL_URL,
   GET_PRODUCT_LAST_URL,
+  GET_COMPANY_LIST_URL,
 };
 
 export { urlHelper, checkUser, urlBuilder, setHeader };

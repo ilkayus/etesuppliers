@@ -3,68 +3,117 @@ import Components from "components";
 import { ICompanyData } from "types/company.interface";
 import useAuth from "hooks/useAuth";
 import API from "api";
+import { icons } from "images";
 import { IUserData } from "types/authorization.interface";
 
 const Companies = () => {
   const { auth } = useAuth();
-  const [lastItems, setLastItems] = useState<ICompanyData[]>([]);
-  useEffect(() => {
-    const getLastAdded = async () => {
-      const res = await API.company.getLastCompanies(auth);
-      console.log(res);
-      return res;
-    };
-    getLastAdded().then((res) => setLastItems(res));
-  }, []);
+  const [grid, setGrid] = useState(false);
+  const [selectedCompany, setSelectedCompany] = useState<any>({});
+  const [modalState, setModalState] = useState({
+    open: false,
+    actionType: "add",
+    dataType: "company",
+    data: {},
+  });
+
+  const handleModalClick = (e: any, type: string) => {
+    console.log(e, modalState);
+    setModalState((prev) => ({
+      open: true,
+      actionType: type,
+      dataType: "company",
+      data: selectedCompany,
+    }));
+  };
 
   return (
-    <main className="company">
-      <div className="company-section">
-        <h1>Companies</h1>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat
-          perspiciatis iste eaque quisquam, dignissimos placeat eos est in?
-          Veniam recusandae, ullam aut corporis vel natus cumque eaque
-          exercitationem ea? Dolorum.
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto atque,
-          officia impedit magnam repudiandae dolorem ipsum natus nihil, quam
-          error suscipit placeat quas voluptatem nisi exercitationem minus
-          asperiores magni modi.
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur
-          consequuntur non molestiae consequatur doloremque possimus, cupiditate
-          beatae? Quisquam mollitia eos cumque impedit provident repudiandae aut
-          tempore vero. Tempora, ut quidem.
-        </p>
-      </div>
-      <div className="company-section companies">
-        <h2>Description of Selected Company:</h2>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro, rerum
-          nam nulla molestias, laborum tenetur non eveniet nobis deserunt
-          suscipit consequuntur soluta nesciunt ipsa reprehenderit accusamus ex
-          impedit, vitae minus.
-        </p>
-      </div>
-      <div className="company-section products-of-company">
-        <h2>Companies:</h2>
-        <div className="table-container">
-          {/* <Components.Table data={lastItems} type={"company"} /> */}
-        </div>
-      </div>
-      <div className="company-section user-activity">
-        <h2>Products of Selected Company:</h2>
-        <div className="table-container">
-          {/* <Components.Table data={lastItems} type={"company"} /> */}
-        </div>
-      </div>
+    <main className={grid ? "product product-animated" : "product"}>
+      {modalState.open ? (
+        <Components.Modal
+          onClose={() => {
+            setModalState((prev) => ({ ...prev, open: false }));
+          }}
+          state={modalState}
+        />
+      ) : (
+        <>
+          <div
+            className="grid-changer"
+            onClick={() => setGrid((prev) => !prev)}
+          >
+            <img src={icons.upArrow} alt="seperator" />
+          </div>
+          <div className="product-section product-description">
+            <h1>Companies</h1>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto
+              atque, officia impedit magnam repudiandae dolorem ipsum natus
+              nihil, quam error suscipit placeat quas voluptatem nisi
+              exercitationem minus asperiores magni modi.
+            </p>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur
+              consequuntur non molestiae consequatur doloremque possimus,
+              cupiditate beatae? Quisquam mollitia eos cumque impedit provident
+              repudiandae aut tempore vero. Tempora, ut quidem.
+            </p>
+          </div>
+          <div className="product-section products-all">
+            <div className="table-header">
+              <h2>Companies:</h2>
+              <div className="table-header-buttons">
+                <button
+                  className={
+                    Object.keys(selectedCompany).length === 0
+                      ? "button-inactive"
+                      : "button-active"
+                  }
+                  onClick={(e) => handleModalClick(e, "update")}
+                >
+                  UPDATE
+                </button>
+                <button
+                  className={
+                    Object.keys(selectedCompany).length === 0
+                      ? "button-inactive"
+                      : "button-active"
+                  }
+                  onClick={(e) => handleModalClick(e, "delete")}
+                >
+                  DELETE
+                </button>
+                <button
+                  className="button-active"
+                  onClick={(e) => handleModalClick(e, "add")}
+                >
+                  ADD
+                </button>
+              </div>
+            </div>
+            <div className="table-container">
+              <Components.Table
+                selected={selectedCompany}
+                setSelected={setSelectedCompany}
+                fetchFn={API.company.getAllCompanies}
+                type={"company"}
+              />
+            </div>
+          </div>
+          <div className="product-section product-selected">
+            {Object.keys(selectedCompany).length !== 0 ? (
+              <div className="table-container">
+                <Components.Company selected={selectedCompany} />
+              </div>
+            ) : (
+              <h1>Select a Company : </h1>
+            )}
+          </div>
+        </>
+      )}
     </main>
   );
 };
-
 export default Companies;
 
 /*

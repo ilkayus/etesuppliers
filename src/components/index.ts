@@ -12,6 +12,9 @@ import Missing from "./homepage/Missing";
 import Unauthorized from "./homepage/Unauthorized";
 
 import Table from "./table/Table";
+import TableSortArrows from "./table/TableSortArrows";
+
+import Modal from "./modal/Modal";
 
 const Components = {
   AnimatedLogo,
@@ -26,6 +29,8 @@ const Components = {
   Missing,
   Unauthorized,
   Table,
+  TableSortArrows,
+  Modal,
 };
 
 export default Components;
