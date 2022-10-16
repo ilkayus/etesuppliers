@@ -10,4 +10,31 @@ const getCompanyList = async (user?: IUserData | undefined): Promise<any[]> => {
   return response.data.data;
 };
 
-export { getCompanyList };
+const getSearchBarData = async (
+  user?: IUserData | undefined
+): Promise<any[]> => {
+  const config = checkUser(user);
+  const url = urlHelper.BASE_URL + urlHelper.GET_SEARCHBAR_LIST_URL;
+  const response = await axios.get(url, config);
+  return response.data;
+};
+
+const getHomePageLogs = async (
+  user?: IUserData | undefined
+): Promise<any[]> => {
+  const config = checkUser(user);
+  const url = urlHelper.BASE_URL + urlHelper.GET_HOMEPAGE_LOGS_URL;
+  const response = await axios.get(url, config);
+  return response.data;
+};
+
+const getSearchResult = async (
+  user: IUserData | undefined,
+  id: string
+): Promise<any[]> => {
+  const url = urlHelper.BASE_URL + urlHelper.GET_SEARCH_ONE_URL + `/${id}`;
+  const response = await axios.get(url, setHeader(user?.token));
+  return response.data;
+};
+
+export { getCompanyList, getSearchBarData, getHomePageLogs, getSearchResult };

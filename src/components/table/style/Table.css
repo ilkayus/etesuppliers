@@ -1,3 +1,36 @@
+.table-table {
+  position: relative;
+}
+.table-table .per-page {
+  top: -30px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  display: flex;
+  align-items: center;
+}
+.table-table .per-page select {
+  width: 200px;
+  height: 30px;
+  font-size: 1.1rem;
+}
+.table-table .per-page img {
+  height: 35px;
+  width: 60px;
+  margin: 10px;
+  padding: 0 10px 0 10px;
+  opacity: 0.2;
+}
+.table-table .per-page .arrow-active {
+  opacity: 1;
+  cursor: pointer;
+}
+.table-table .per-page .left-arrow {
+  transform: rotate(-90deg);
+}
+.table-table .per-page .right-arrow {
+  transform: rotate(90deg);
+}
 .table-table table {
   border-collapse: collapse;
   width: 100%;

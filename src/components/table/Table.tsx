@@ -3,6 +3,8 @@ import { tableHeaders, tableKeys, ago } from "./table.helper";
 import useAuth from "hooks/useAuth";
 import TableSortArrows from "./TableSortArrows";
 import "./style/Table.css";
+import { icons } from "images";
+import Missing from "components/homepage/Missing";
 
 export interface Props {
   selected: any;
@@ -14,24 +16,30 @@ export interface Props {
 const Table = ({ selected, setSelected, fetchFn, type }: Props) => {
   const { auth } = useAuth();
   const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage, setPostsPerPage] = useState(5);
+  const [pageData, setPageData] = useState<any[]>([]);
   const [data, setData] = useState<any[]>([]);
   const [jsxTable, setJsxTable] = useState<any>();
   const [filter, setFilter] = useState(
     Array(tableKeys[type === "product" ? "product" : "company"].length).fill(0)
   );
-  const [postsPerPage, setPostsPerPage] = useState(10);
 
   useEffect(() => {
     const getProducts = async () => {
       const res = await fetchFn(auth);
-      console.log(res);
       return res;
     };
     getProducts().then((res) => setData(res));
   }, []);
 
+  useEffect(() => {
+    setPageData(
+      data.slice((currentPage - 1) * postsPerPage, currentPage * postsPerPage)
+    );
+  }, [currentPage, postsPerPage, data]);
+
   const dataKeys = tableKeys[type === "product" ? "product" : "company"];
-  const tableData = data.map((x, ind) =>
+  const tableData = pageData.map((x, ind) =>
     dataKeys.map((el: any, idx: number) => (
       <td key={idx + 1 + ind * dataKeys.length}>
         {el === "photo" ? (
@@ -54,7 +62,9 @@ const Table = ({ selected, setSelected, fetchFn, type }: Props) => {
   const tableRowClickEventHandler = (e: any) => {
     if (!e.target.parentElement.dataset.rowid) return;
     setSelected(
-      ...data.filter((el) => el._id === e.target.parentElement.dataset.rowid)
+      ...pageData.filter(
+        (el) => el._id === e.target.parentElement.dataset.rowid
+      )
     );
   };
   const tableColumnClickEventHandler = (e: any) => {
@@ -76,14 +86,8 @@ const Table = ({ selected, setSelected, fetchFn, type }: Props) => {
           : -1;
       })
     );
-    // [
-    //   ...prev.slice(0, idx),
-    //   !prev[idx],
-    //   ...prev.slice(idx + 1),
-    // ]);
   };
   useEffect(() => {
-    //console.log(filter);
     setJsxTable(
       <table>
         <thead onClick={(e) => tableColumnClickEventHandler(e)}>
@@ -99,15 +103,15 @@ const Table = ({ selected, setSelected, fetchFn, type }: Props) => {
           </tr>
         </thead>
         <tbody onClick={(e) => tableRowClickEventHandler(e)}>
-          {tableData.map((el, idx) => (
+          {tableData.map((el: any, idx: number) => (
             <tr
               key={idx + 1}
               className={
-                data[idx]._id === selected._id
+                pageData[idx]._id === selected._id
                   ? "selected-row"
                   : "not-selected-row"
               }
-              data-rowid={data[idx]._id}
+              data-rowid={pageData[idx]._id}
             >
               {el}
             </tr>
@@ -115,9 +119,48 @@ const Table = ({ selected, setSelected, fetchFn, type }: Props) => {
         </tbody>
       </table>
     );
-  }, [data, filter, selected]);
+  }, [pageData, filter, selected]);
 
-  return <div className="table-table">{jsxTable}</div>;
+  const handlePageNumber = (pageDiff: number) => {
+    if (data.length === 0) return;
+    const maxPage = Math.ceil(data.length / postsPerPage);
+    pageDiff === 1
+      ? setCurrentPage((prev) => Math.min(prev + 1, maxPage))
+      : setCurrentPage((prev) => Math.max(prev - 1, 1));
+  };
+
+  const handlePostPerPage = (e: any) => {
+    setPostsPerPage(parseInt(e.target.value));
+    setCurrentPage(1);
+  };
+
+  return (
+    <div className="table-table">
+      <div className="per-page">
+        <img
+          className={"left-arrow " + (currentPage > 1 ? " arrow-active" : "")}
+          src={icons.upArrow}
+          alt=""
+          onClick={() => handlePageNumber(-1)}
+        />
+        <select name="post-per-page" id="" onChange={handlePostPerPage}>
+          <option value="5">5 Results - {`Page ${currentPage}`}</option>
+          <option value="10">10 Results {`Page ${currentPage}`}</option>
+          <option value="20">20 Results {`Page ${currentPage}`}</option>
+        </select>
+        <img
+          className={
+            "right-arrow " +
+            (currentPage * postsPerPage < data.length ? " arrow-active" : "")
+          }
+          src={icons.upArrow}
+          alt=""
+          onClick={() => handlePageNumber(1)}
+        />
+      </div>
+      {jsxTable}
+    </div>
+  );
 };
 
 export default Table;

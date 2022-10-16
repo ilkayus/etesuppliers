@@ -19,6 +19,9 @@ const GET_PRODUCT_ALL_URL = "/products/getall";
 const GET_PRODUCT_LAST_URL = "/products/getlast";
 
 const GET_COMPANY_LIST_URL = "/search/companylist";
+const GET_SEARCHBAR_LIST_URL = "/search/searchbarlist";
+const GET_HOMEPAGE_LOGS_URL = "/search/logs";
+const GET_SEARCH_ONE_URL = "/search/searchone";
 
 //-----------------------------------------------
 const setHeader = (token: string | undefined): any => {
@@ -63,6 +66,9 @@ const urlHelper = {
   GET_PRODUCT_ALL_URL,
   GET_PRODUCT_LAST_URL,
   GET_COMPANY_LIST_URL,
+  GET_SEARCHBAR_LIST_URL,
+  GET_HOMEPAGE_LOGS_URL,
+  GET_SEARCH_ONE_URL,
 };
 
 export { urlHelper, checkUser, urlBuilder, setHeader };

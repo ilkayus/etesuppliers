@@ -14,6 +14,9 @@ import Unauthorized from "./homepage/Unauthorized";
 import Table from "./table/Table";
 import TableSortArrows from "./table/TableSortArrows";
 
+import SearchBar from "./searchBar/SearchBar";
+import SearchResult from "./searchBar/SearchResult";
+
 import Modal from "./modal/Modal";
 
 const Components = {
@@ -31,6 +34,8 @@ const Components = {
   Table,
   TableSortArrows,
   Modal,
+  SearchBar,
+  SearchResult,
 };
 
 export default Components;

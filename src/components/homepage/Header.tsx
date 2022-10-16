@@ -2,6 +2,7 @@ import React from "react";
 import { logo, icons } from "images";
 import "./style/HomepageComponents.css";
 import useAuth from "hooks/useAuth";
+import Components from "components";
 
 const Header = () => {
   const { auth, setAuth } = useAuth();
@@ -10,7 +11,7 @@ const Header = () => {
     <header className="header">
       <img src={logo.etecubeLogo} alt="etecube logo" className="etecube-logo" />
       <img src={logo.suppliers} alt="etecube logo" className="suppliers-logo" />
-      <h1>ETE [Suppliers]</h1>
+      <Components.SearchBar />
       <div className="avatar">
         <div className="photo-container">
           <img src={icons.user} alt="user" />

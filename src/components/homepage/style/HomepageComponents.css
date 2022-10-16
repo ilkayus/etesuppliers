@@ -7,6 +7,10 @@
   grid-template-columns: 350px 3fr 3fr 2fr 1fr 350px;
   grid-template-rows: 75px 75px;
 }
+.header .search-bar {
+  grid-row: 2/3;
+  grid-column: 2/4;
+}
 .header img {
   width: 100%;
   height: 50px;
@@ -215,7 +219,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 .product .table-header .table-header-buttons {
   position: absolute;
@@ -314,6 +318,94 @@
 .product-animated .grid-changer > img {
   transform: rotate(180deg);
   transition: all 0.6s;
+}
+
+.search-result-container {
+  position: relative;
+}
+.search-result-container .search-result-return {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
+  font-size: 1.2rem;
+  padding: 8px 25px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  color: #efefef;
+  border-bottom-left-radius: 10px;
+  background: linear-gradient(to bottom, rgb(24, 80, 68), rgba(52, 119, 104, 0.8666666667));
+}
+.search-result-container .search-result-return:hover {
+  background: linear-gradient(to bottom, rgba(204, 251, 241, 0.5), rgb(24, 80, 68));
+}
+
+.product-selected-product {
+  position: relative;
+  height: 100%;
+}
+.product-selected-product .header-product {
+  display: grid;
+  grid-template-columns: 450px auto;
+  grid-template-rows: 70px auto 50px 50px 50px auto;
+  font-size: 1rem;
+}
+.product-selected-product .header-product .header-category {
+  grid-column: 2/3;
+  grid-row: 1/2;
+}
+.product-selected-product .header-product .header-owner {
+  grid-column: 1/3;
+  grid-row: 3/4;
+}
+.product-selected-product .header-product .header-company {
+  grid-column: 1/3;
+  grid-row: 4/5;
+}
+.product-selected-product .header-product .header-stock {
+  grid-column: 1/3;
+  grid-row: 5/6;
+}
+.product-selected-product .header-product .header-added {
+  grid-column: 1/3;
+  grid-row: 6/7;
+}
+.product-selected-product .header-product a {
+  color: #efefef;
+}
+.product-selected-product .header-product h1 {
+  grid-column: 1/2;
+  grid-row: 1/2;
+  font-weight: 400;
+}
+.product-selected-product .header-product h3 {
+  opacity: 0.5;
+  font-weight: 400;
+}
+.product-selected-product .header-product p {
+  grid-column: 1/3;
+  grid-row: 2/3;
+  font-weight: 300;
+  font-size: 1.2rem;
+}
+.product-selected-product img {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 10vh;
+  width: 10vh;
+  border-radius: 10px;
+}
+
+.home .home-section .table-container {
+  color: #efefef;
+  font-size: 1.2rem;
+  font-weight: 300;
+}
+.home .home-section .table-container li {
+  padding: 5px;
+  margin-right: 70px;
+  background-color: rgba(51, 51, 51, 0.4666666667);
 }
 
 .company,

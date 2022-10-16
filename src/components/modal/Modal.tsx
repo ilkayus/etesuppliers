@@ -68,7 +68,7 @@ const Modal = ({ state, onClose }: Props) => {
         );
       else if (formKeys[i] !== "company")
         formContents.push(
-          <div key={123} className="form-input-field">
+          <div key={7 + i * 11} className="form-input-field">
             <label
               key={1 + i * 10}
               htmlFor={formKeys[i]}
@@ -113,19 +113,19 @@ const Modal = ({ state, onClose }: Props) => {
     e.preventDefault();
     if (state.dataType === "product" && state.actionType === "update") {
       const res = API.product.updateProduct(auth, form);
-      console.log("pro up");
+    //  console.log("pro up");
     }
     if (state.dataType === "company" && state.actionType === "update") {
       const res = API.company.updateCompany(auth, form);
-      console.log("comp up");
+   //   console.log("comp up");
     }
     if (state.dataType === "product" && state.actionType === "add") {
       const res = API.product.createProduct(auth, form);
-      console.log("pro add:", res);
+    //  console.log("pro add:", res);
     }
     if (state.dataType === "company" && state.actionType === "add") {
       const res = API.company.createCompany(auth, form);
-      console.log("comp add:", res);
+     // console.log("comp add:", res);
     }
     onClose();
   };

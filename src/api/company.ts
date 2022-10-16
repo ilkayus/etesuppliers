@@ -9,7 +9,7 @@ const getAllCompanies = async (
   const config = checkUser(user);
   const url = urlHelper.BASE_URL + urlHelper.GET_COMPANY_ALL_URL;
   const response = await axios.get(url, config);
-  console.log(response.data);
+  //console.log(response.data);
   return response.data.data;
 };
 
@@ -40,7 +40,7 @@ const createCompany = async (
     },
     setHeader(user?.token)
   );
-  console.log(response);
+  //console.log(response);
   return response.data.data;
 };
 
@@ -50,14 +50,14 @@ const getOneCompany = async (
 ): Promise<ICompanyData> => {
   const url = urlHelper.BASE_URL + urlHelper.GET_COMPANY_URL + `/${id}`;
   const response = await axios.get(url, setHeader(user?.token));
-  console.log(response);
+  //console.log(response);
   return response.data.data;
 };
 
 const deleteCompany = async (user: IUserData | undefined, id: string) => {
   const url = urlHelper.BASE_URL + urlHelper.REMOVE_COMPANY_URL + `/${id}`;
   const response = await axios.delete(url, setHeader(user?.token));
-  console.log(response);
+  //console.log(response);
   return response;
 };
 
@@ -72,7 +72,7 @@ const updateCompany = async (
     { ...companyData, createdAt: new Date() },
     setHeader(user?.token)
   );
-  console.log(response);
+  //console.log(response);
   return response.data.data;
 };
 
