@@ -1,15 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Components from "components";
-import { ICompanyData } from "types/company.interface";
-import useAuth from "hooks/useAuth";
 import useSearch from "hooks/useSearch";
 import API from "api";
 import { icons } from "images";
-import { IUserData } from "types/authorization.interface";
 
 const Companies = () => {
   const { search } = useSearch();
-  const { auth } = useAuth();
   const [grid, setGrid] = useState(false);
   const [selectedCompany, setSelectedCompany] = useState<any>({});
   const [modalState, setModalState] = useState({
@@ -20,7 +16,6 @@ const Companies = () => {
   });
 
   const handleModalClick = (e: any, type: string) => {
-    //console.log(e, modalState);
     setModalState((prev) => ({
       open: true,
       actionType: type,

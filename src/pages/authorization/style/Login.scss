@@ -3,15 +3,7 @@
 .si--page {
   height: 100vh;
   width: 100vw;
-  .si--container-login {
-    animation: getscreencolor 4s;
-    h1 {
-      animation: getscreen 4s;
-    }
-    form {
-      animation: getscreen 4s;
-    }
-  }
+
   .si--container-register {
     animation: getscreencontainer 1s ease-out;
     .username-register {
@@ -28,6 +20,12 @@
     width: clamp(350px, 70vw, 550px);
     background-color: $white;
 
+    .login-failed {
+      background-color: $warning-red;
+      padding: 15px;
+      text-align: center;
+      border-radius: 0.5rem;
+    }
     h1 {
       font-size: 1.875rem;
       line-height: 2.25rem;
@@ -111,6 +109,15 @@
         background-color: transparent;
         cursor: pointer;
       }
+    }
+  }
+  .si--container-login {
+    animation: getscreencolor 4s;
+    h1 {
+      animation: getscreen 4s;
+    }
+    form {
+      animation: getscreen 4s;
     }
   }
 }

@@ -15,28 +15,31 @@ const Login = () => {
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
   //------------------------------
-  const handleChange = (e: any) => {
-    dispatch({
-      type: e.target.name,
-      payload: e.target.value,
-    });
-  };
-
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    dispatch({ type: "validateInputsLogin", payload: undefined });
-    if (!state.inputsValidLogin) return;
-    const res = await API.auth.login(state.email, state.password);
-    setAuth(res);
-    localStorage.setItem("user", JSON.stringify(res));
-    navigate(from, { replace: true });
+    if (!state.emailValid || !state.passwordValid) return;
+    dispatch({ type: "setRequesting", payload: true });
+    try {
+      const res = await API.auth.login(state.email, state.password);
+      setAuth(res);
+      localStorage.setItem("user", JSON.stringify(res));
+      dispatch({ type: "setRequesting", payload: false });
+      navigate(from, { replace: true });
+    } catch (error: any) {
+      dispatch({ type: "setFailure", payload: error.response.statusText });
+      console.log(error);
+    }
   };
 
   return (
     <section className="si--page">
+      {state.isRequesting ? <Components.Loading /> : null}
       <div className="si--container si--container-login">
         <Components.AnimatedLogo page="login" />
         <h1>Login</h1>
+        {state.failure ? (
+          <h3 className="login-failed">{state.failureMessage}</h3>
+        ) : null}
         <form method="post" onSubmit={handleSubmit}>
           <label htmlFor="username" className="username">
             <span className="username-icon">
@@ -55,7 +58,12 @@ const Login = () => {
               }
               required
               value={state.email}
-              onChange={handleChange}
+              onChange={(e) => {
+                dispatch({
+                  type: "email",
+                  payload: e.target.value,
+                });
+              }}
             />
           </label>
           <label htmlFor="password" className="username">
@@ -75,7 +83,12 @@ const Login = () => {
               }
               required
               value={state.password}
-              onChange={handleChange}
+              onChange={(e) => {
+                dispatch({
+                  type: "password",
+                  payload: e.target.value,
+                });
+              }}
             />
           </label>
           <button type="submit" className="submit-button">

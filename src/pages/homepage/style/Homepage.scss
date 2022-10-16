@@ -1,6 +1,7 @@
 @use "../../../styles/main/_colors.scss" as *;
 
 .homepage {
+  background-color: $primary;
   padding: 5px;
   width: 125vw;
   height: 125vh;

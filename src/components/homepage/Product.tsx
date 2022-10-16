@@ -2,7 +2,7 @@ import { IProductData } from "types/product.interface";
 import { ago } from "../table/table.helper";
 
 export interface Props {
-  selected: IProductData;
+  selected: IProductData | any;
 }
 
 const Product = ({ selected }: Props) => {

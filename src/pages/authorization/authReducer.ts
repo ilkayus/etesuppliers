@@ -6,7 +6,9 @@ type AuthActionTypes =
   | { type: "email"; payload: string }
   | { type: "username"; payload: string }
   | { type: "password"; payload: string }
-  | { type: "passwordConfirm"; payload: string };
+  | { type: "passwordConfirm"; payload: string }
+  | { type: "setRequesting"; payload: boolean }
+  | { type: "setFailure"; payload: any };
 
 const initialState = {
   inputsValidRegister: false,
@@ -19,6 +21,9 @@ const initialState = {
   username: "",
   password: "",
   passwordConfirm: "",
+  isRequesting: false,
+  failure: false,
+  failureMessage: "Something went wrong",
 };
 
 const authReducer = (state: typeof initialState, action: AuthActionTypes) => {
@@ -62,6 +67,20 @@ const authReducer = (state: typeof initialState, action: AuthActionTypes) => {
         ...state,
         passwordConfirm: action.payload,
         confirmPasswordValid: state.password === action.payload,
+      };
+
+    case "setRequesting":
+      return {
+        ...state,
+        isRequesting: action.payload,
+        failure: false,
+      };
+    case "setFailure":
+      return {
+        ...state,
+        isRequesting: false,
+        failure: true,
+        // failureMessage: action.payload,
       };
     default:
       throw new Error(`Invalid authentication state.`);

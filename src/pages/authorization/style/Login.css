@@ -2,18 +2,6 @@
   height: 100vh;
   width: 100vw;
 }
-.si--page .si--container-login {
-  -webkit-animation: getscreencolor 4s;
-          animation: getscreencolor 4s;
-}
-.si--page .si--container-login h1 {
-  -webkit-animation: getscreen 4s;
-          animation: getscreen 4s;
-}
-.si--page .si--container-login form {
-  -webkit-animation: getscreen 4s;
-          animation: getscreen 4s;
-}
 .si--page .si--container-register {
   -webkit-animation: getscreencontainer 1s ease-out;
           animation: getscreencontainer 1s ease-out;
@@ -31,6 +19,12 @@
   border-radius: 0.5rem;
   width: clamp(350px, 70vw, 550px);
   background-color: #ffffff;
+}
+.si--page .si--container .login-failed {
+  background-color: rgba(244, 63, 94, 0.5);
+  padding: 15px;
+  text-align: center;
+  border-radius: 0.5rem;
 }
 .si--page .si--container h1 {
   font-size: 1.875rem;
@@ -105,6 +99,18 @@
   font-size: 1.2rem;
   background-color: transparent;
   cursor: pointer;
+}
+.si--page .si--container-login {
+  -webkit-animation: getscreencolor 4s;
+          animation: getscreencolor 4s;
+}
+.si--page .si--container-login h1 {
+  -webkit-animation: getscreen 4s;
+          animation: getscreen 4s;
+}
+.si--page .si--container-login form {
+  -webkit-animation: getscreen 4s;
+          animation: getscreen 4s;
 }
 
 @-webkit-keyframes getscreen {

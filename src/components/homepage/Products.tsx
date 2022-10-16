@@ -1,14 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Components from "components";
-import { IProductData } from "types/product.interface";
-import useAuth from "hooks/useAuth";
 import useSearch from "hooks/useSearch";
 import API from "api";
-import { IUserData } from "types/authorization.interface";
 import { icons } from "images";
 
 const Products = () => {
-  const { auth } = useAuth();
   const { search } = useSearch();
   const [grid, setGrid] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<any>({});
@@ -20,7 +16,6 @@ const Products = () => {
   });
 
   const handleModalClick = (e: any, type: string) => {
-    //console.log(e, modalState);
     setModalState((prev) => ({
       open: true,
       actionType: type,

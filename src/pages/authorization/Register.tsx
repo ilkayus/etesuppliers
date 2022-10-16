@@ -15,33 +15,42 @@ const Register = () => {
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
   //------------------------------
-  const handleChange = (e: any) => {
-    dispatch({
-      type: e.target.name,
-      payload: e.target.value,
-    });
-  };
-
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    dispatch({ type: "validateInputsRegister", payload: undefined });
-    if (!state.inputsValidRegister) return;
-    const res = await API.auth.register(
-      state.email,
-      state.username,
-      state.password,
-      state.passwordConfirm
-    );
-    setAuth(res);
-    localStorage.setItem("user", JSON.stringify(res));
-    navigate(from, { replace: true });
+    if (
+      !state.emailValid ||
+      !state.passwordValid ||
+      !state.usernameValid ||
+      !state.confirmPasswordValid
+    )
+      return;
+    dispatch({ type: "setRequesting", payload: true });
+    try {
+      const res = await API.auth.register(
+        state.email,
+        state.username,
+        state.password,
+        state.passwordConfirm
+      );
+      setAuth(res);
+      localStorage.setItem("user", JSON.stringify(res));
+      dispatch({ type: "setRequesting", payload: false });
+      navigate(from, { replace: true });
+    } catch (error: any) {
+      dispatch({ type: "setFailure", payload: error.response.statusText });
+      console.log(error);
+    }
   };
 
   return (
     <section className="si--page">
+      {state.isRequesting ? <Components.Loading /> : null}
       <div className="si--container si--container-register">
         <Components.AnimatedLogo page="register" />
         <h1>Register</h1>
+        {state.failure ? (
+          <h3 className="login-failed">{state.failureMessage}</h3>
+        ) : null}
         <form method="post" onSubmit={handleSubmit}>
           <label htmlFor="username" className="username username-register">
             <span className="username-icon">
@@ -61,7 +70,12 @@ const Register = () => {
               }
               required
               value={state.username}
-              onChange={handleChange}
+              onChange={(e) => {
+                dispatch({
+                  type: "username",
+                  payload: e.target.value,
+                });
+              }}
             />
           </label>
           <label htmlFor="email" className="username">
@@ -82,7 +96,12 @@ const Register = () => {
               }
               required
               value={state.email}
-              onChange={handleChange}
+              onChange={(e) => {
+                dispatch({
+                  type: "email",
+                  payload: e.target.value,
+                });
+              }}
             />
           </label>
           <label htmlFor="password" className="username">
@@ -102,7 +121,12 @@ const Register = () => {
               }
               required
               value={state.password}
-              onChange={handleChange}
+              onChange={(e) => {
+                dispatch({
+                  type: "password",
+                  payload: e.target.value,
+                });
+              }}
             />
           </label>
           <label
@@ -125,7 +149,12 @@ const Register = () => {
               }
               required
               value={state.passwordConfirm}
-              onChange={handleChange}
+              onChange={(e) => {
+                dispatch({
+                  type: "passwordConfirm",
+                  payload: e.target.value,
+                });
+              }}
             />
           </label>
           <button type="submit" className="submit-button">

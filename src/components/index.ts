@@ -19,6 +19,8 @@ import SearchResult from "./searchBar/SearchResult";
 
 import Modal from "./modal/Modal";
 
+import Loading from "./loading/Loading";
+
 const Components = {
   AnimatedLogo,
   RequireAuth,
@@ -36,6 +38,7 @@ const Components = {
   Modal,
   SearchBar,
   SearchResult,
+  Loading,
 };
 
 export default Components;
