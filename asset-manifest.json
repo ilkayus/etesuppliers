@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/etesuppliers/static/css/main.ddd9a3a3.css",
-    "main.js": "/etesuppliers/static/js/main.2cdc6fd8.js",
+    "main.css": "/etesuppliers/static/css/main.d8546082.css",
+    "main.js": "/etesuppliers/static/js/main.587bcb20.js",
     "static/media/cube-right-bottom.png": "/etesuppliers/static/media/cube-right-bottom.04bc35ff1ed8c3f1596e.png",
     "static/media/cubes.png": "/etesuppliers/static/media/cubes.01843743d26212186062.png",
     "static/media/etekp.png": "/etesuppliers/static/media/etekp.c5ccd9275d6051ef2031.png",
@@ -25,11 +25,11 @@
     "static/media/user.svg": "/etesuppliers/static/media/user.9d53aa1dcb6c8d5bf2a061fccbe3827d.svg",
     "static/media/up-arrow.svg": "/etesuppliers/static/media/up-arrow.7d82611778bf98a532fda880b0c21f8c.svg",
     "static/media/right-arrow.svg": "/etesuppliers/static/media/right-arrow.80164bbb6c519acc5e2cae19fd2aba53.svg",
-    "main.ddd9a3a3.css.map": "/etesuppliers/static/css/main.ddd9a3a3.css.map",
-    "main.2cdc6fd8.js.map": "/etesuppliers/static/js/main.2cdc6fd8.js.map"
+    "main.d8546082.css.map": "/etesuppliers/static/css/main.d8546082.css.map",
+    "main.587bcb20.js.map": "/etesuppliers/static/js/main.587bcb20.js.map"
   },
   "entrypoints": [
-    "static/css/main.ddd9a3a3.css",
-    "static/js/main.2cdc6fd8.js"
+    "static/css/main.d8546082.css",
+    "static/js/main.587bcb20.js"
   ]
 }
