@@ -1,0 +1,35 @@
+{
+  "files": {
+    "main.css": "/etesuppliers/static/css/main.ddd9a3a3.css",
+    "main.js": "/etesuppliers/static/js/main.2cdc6fd8.js",
+    "static/media/cube-right-bottom.png": "/etesuppliers/static/media/cube-right-bottom.04bc35ff1ed8c3f1596e.png",
+    "static/media/cubes.png": "/etesuppliers/static/media/cubes.01843743d26212186062.png",
+    "static/media/etekp.png": "/etesuppliers/static/media/etekp.c5ccd9275d6051ef2031.png",
+    "static/media/etecube-logo.png": "/etesuppliers/static/media/etecube-logo.ed5bed58f77f0ed715b5.png",
+    "static/media/suppliers.svg": "/etesuppliers/static/media/suppliers.8f434d72a56be3674d917ca78012f846.svg",
+    "static/media/handshake-1939.svg": "/etesuppliers/static/media/handshake-1939.6bae920649739b969a9d7f02b7730339.svg",
+    "static/media/search-1.svg": "/etesuppliers/static/media/search-1.de87c81f5887a1c02efbeafb98a1bda5.svg",
+    "static/media/advanced-search.svg": "/etesuppliers/static/media/advanced-search.ed8f7061579903f479d808a6d6e6f562.svg",
+    "static/media/star.svg": "/etesuppliers/static/media/star.11b30900fe49bb556ee5cb40a653b129.svg",
+    "index.html": "/etesuppliers/index.html",
+    "static/media/random-thin.svg": "/etesuppliers/static/media/random-thin.0e37b314a5ee9300947291b1da7d88c5.svg",
+    "static/media/google.svg": "/etesuppliers/static/media/google.87702cff6eb53c6bc27d836430f1be79.svg",
+    "static/media/star-animated.svg": "/etesuppliers/static/media/star-animated.3d3514413fa60a25307c0071a87b5df2.svg",
+    "static/media/product.svg": "/etesuppliers/static/media/product.8fddc471e448c37e30f7a3bb42ba4a27.svg",
+    "static/media/power-off.svg": "/etesuppliers/static/media/power-off.86a279c47a70af189d201d6cf5484cea.svg",
+    "static/media/envelop.svg": "/etesuppliers/static/media/envelop.e4aaf64fc8dbc148d059d56af8117f65.svg",
+    "static/media/lock-open.svg": "/etesuppliers/static/media/lock-open.16ac384ce97fccbcb4a78767dc95fda3.svg",
+    "static/media/home.svg": "/etesuppliers/static/media/home.bd150b27e333e89cfb04e219620481d6.svg",
+    "static/media/user-login.svg": "/etesuppliers/static/media/user-login.a915ecf2f77f54722e3bf1ad4accedd9.svg",
+    "static/media/user-white.svg": "/etesuppliers/static/media/user-white.d26411a91024b2748737d72c15b2712e.svg",
+    "static/media/user.svg": "/etesuppliers/static/media/user.9d53aa1dcb6c8d5bf2a061fccbe3827d.svg",
+    "static/media/up-arrow.svg": "/etesuppliers/static/media/up-arrow.7d82611778bf98a532fda880b0c21f8c.svg",
+    "static/media/right-arrow.svg": "/etesuppliers/static/media/right-arrow.80164bbb6c519acc5e2cae19fd2aba53.svg",
+    "main.ddd9a3a3.css.map": "/etesuppliers/static/css/main.ddd9a3a3.css.map",
+    "main.2cdc6fd8.js.map": "/etesuppliers/static/js/main.2cdc6fd8.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ddd9a3a3.css",
+    "static/js/main.2cdc6fd8.js"
+  ]
+}
