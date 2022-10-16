@@ -10,9 +10,13 @@
   align-items: center;
 }
 .table-table .per-page select {
-  width: 200px;
-  height: 30px;
+  width: 220px;
+  height: 44px;
+  background-color: #222222;
+  color: #efefef;
+  border-radius: 10px;
   font-size: 1.1rem;
+  text-align: center;
 }
 .table-table .per-page img {
   height: 35px;

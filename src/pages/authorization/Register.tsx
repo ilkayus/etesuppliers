@@ -1,64 +1,40 @@
-import { useState, useEffect } from "react";
+import { useReducer } from "react";
+import { authReducer, initialState } from "./authReducer";
 import { useNavigate, useLocation } from "react-router-dom";
 import API from "api";
 import useAuth from "hooks/useAuth";
 import "./style/Login.css";
-import * as authHelpers from "./authorization.helper";
 import Components from "components";
 import { icons } from "images";
 
-export interface Props {}
-
 const Register = () => {
+  //------------------------------
+  const [state, dispatch] = useReducer(authReducer, initialState);
   const { setAuth } = useAuth();
-
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
-
-  const [emailValid, setEmailValid] = useState(false);
-  const [passwordValid, setPasswordValid] = useState(false);
-  const [usernameValid, setUsernameValid] = useState(false);
-  const [passwordConfirmValid, setPasswordConfirmValid] = useState(false);
-
-  const [form, setForm] = useState({
-    email: "",
-    username: "",
-    password: "",
-    passwordConfirm: "",
-  });
-
-  useEffect(() => {
-    setEmailValid(authHelpers.EMAIL_REGEX.test(form.email));
-    setPasswordValid(authHelpers.PASSWORD_REGEX.test(form.password));
-    setUsernameValid(authHelpers.USERNAME_REGEX.test(form.username));
-    setPasswordConfirmValid(form.password === form.passwordConfirm);
-  }, [form]);
-
+  //------------------------------
   const handleChange = (e: any) => {
-    setForm((prev) => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }));
+    dispatch({
+      type: e.target.name,
+      payload: e.target.value,
+    });
   };
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    if (
-      !emailValid ||
-      !passwordValid ||
-      !usernameValid ||
-      !passwordConfirmValid
-    )
-      return;
+    dispatch({ type: "validateInputsRegister", payload: undefined });
+    if (!state.inputsValidRegister) return;
     const res = await API.auth.register(
-      form.email,
-      form.username,
-      form.password,
-      form.passwordConfirm
+      state.email,
+      state.username,
+      state.password,
+      state.passwordConfirm
     );
     setAuth(res);
-    navigate("from", { replace: true });
+    localStorage.setItem("user", JSON.stringify(res));
+    navigate(from, { replace: true });
   };
 
   return (
@@ -77,15 +53,14 @@ const Register = () => {
               placeholder="Username"
               autoComplete="off"
               className={
-                form.username.length > 0
-                  ? usernameValid
+                state.username.length > 0
+                  ? state.usernameValid
                     ? "si--username-input-valid"
                     : "si--username-input-invalid"
                   : ""
               }
               required
-              // pattern={authHelpers.USERNAME_PATTERN}
-              value={form.username}
+              value={state.username}
               onChange={handleChange}
             />
           </label>
@@ -99,15 +74,14 @@ const Register = () => {
               placeholder="Email"
               autoComplete="off"
               className={
-                form.email.length > 0
-                  ? emailValid
+                state.email.length > 0
+                  ? state.emailValid
                     ? "si--username-input-valid"
                     : "si--username-input-invalid"
                   : ""
               }
               required
-              // pattern={authHelpers.EMAIL_PATTERN}
-              value={form.email}
+              value={state.email}
               onChange={handleChange}
             />
           </label>
@@ -120,15 +94,14 @@ const Register = () => {
               name="password"
               placeholder="Password"
               className={
-                form.password.length > 0
-                  ? passwordValid
+                state.password.length > 0
+                  ? state.passwordValid
                     ? "si--username-input-valid"
                     : "si--username-input-invalid"
                   : ""
               }
-              // pattern={authHelpers.PASSWORD_PATTERN}
               required
-              value={form.password}
+              value={state.password}
               onChange={handleChange}
             />
           </label>
@@ -144,15 +117,14 @@ const Register = () => {
               name="passwordConfirm"
               placeholder="Confirm Password"
               className={
-                form.passwordConfirm.length > 0
-                  ? passwordConfirmValid
+                state.passwordConfirm.length > 0
+                  ? state.confirmPasswordValid
                     ? "si--username-input-valid"
                     : "si--username-input-invalid"
                   : ""
               }
-              // pattern={authHelpers.PASSWORD_PATTERN}
               required
-              value={form.passwordConfirm}
+              value={state.passwordConfirm}
               onChange={handleChange}
             />
           </label>

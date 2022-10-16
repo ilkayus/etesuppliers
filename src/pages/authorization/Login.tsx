@@ -1,46 +1,34 @@
-import { useState, useEffect } from "react";
-import { useNavigate, Link, useLocation } from "react-router-dom";
+import { useReducer } from "react";
+import { authReducer, initialState } from "./authReducer";
+import { useNavigate, useLocation } from "react-router-dom";
 import API from "api";
 import useAuth from "hooks/useAuth";
 import "./style/Login.css";
-import * as authHelpers from "./authorization.helper";
 import Components from "components";
 import { icons } from "images";
 
-export interface Props {}
-
 const Login = () => {
+  //------------------------------
+  const [state, dispatch] = useReducer(authReducer, initialState);
   const { setAuth } = useAuth();
-
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
-
-  const [emailValid, setEmailValid] = useState(false);
-  const [passwordValid, setPasswordValid] = useState(false);
-
-  const [form, setForm] = useState({
-    email: "",
-    password: "",
-  });
-
-  useEffect(() => {
-    setEmailValid(authHelpers.EMAIL_REGEX.test(form.email));
-    setPasswordValid(authHelpers.PASSWORD_REGEX.test(form.password));
-  }, [form]);
-
+  //------------------------------
   const handleChange = (e: any) => {
-    setForm((prev) => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }));
+    dispatch({
+      type: e.target.name,
+      payload: e.target.value,
+    });
   };
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    if (!emailValid || !passwordValid) return;
-    const res = await API.auth.login(form.email, form.password);
+    dispatch({ type: "validateInputsLogin", payload: undefined });
+    if (!state.inputsValidLogin) return;
+    const res = await API.auth.login(state.email, state.password);
     setAuth(res);
+    localStorage.setItem("user", JSON.stringify(res));
     navigate(from, { replace: true });
   };
 
@@ -58,17 +46,15 @@ const Login = () => {
               type="email"
               name="email"
               placeholder="Email"
-              // autoComplete="off"
               className={
-                form.email.length > 0
-                  ? emailValid
+                state.email.length > 0
+                  ? state.emailValid
                     ? "si--username-input-valid"
                     : "si--username-input-invalid"
                   : ""
               }
               required
-              // pattern={authHelpers.EMAIL_PATTERN}
-              value={form.email}
+              value={state.email}
               onChange={handleChange}
             />
           </label>
@@ -81,15 +67,14 @@ const Login = () => {
               name="password"
               placeholder="Password"
               className={
-                form.password.length > 0
-                  ? passwordValid
+                state.password.length > 0
+                  ? state.passwordValid
                     ? "si--username-input-valid"
                     : "si--username-input-invalid"
                   : ""
               }
-              // pattern={authHelpers.PASSWORD_PATTERN}
               required
-              value={form.password}
+              value={state.password}
               onChange={handleChange}
             />
           </label>

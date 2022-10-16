@@ -8,11 +8,9 @@ import { icons } from "images";
 const SearchBar = () => {
   const { setSearch } = useSearch();
   const { auth } = useAuth();
-  // const [searchInput, setSearchInput] = useState<string>("");
   const [searchBarData, setSearchBarData] = useState<any>();
   const [searchBarlist, setSearchBarlist] = useState<any>();
   const [selected, setSelected] = useState<any>();
-  const [focus, setFocus] = useState(false);
 
   useEffect(() => {
     const getSearchBarList = async () => {
@@ -20,9 +18,9 @@ const SearchBar = () => {
       console.log(res);
       return res;
     };
-    if (searchBarData?.length === 0 || searchBarData === undefined)
-      getSearchBarList().then((data) => setSearchBarData(data));
-  }, [auth, focus]);
+    // if (searchBarData?.length === 0 || searchBarData === undefined)
+    getSearchBarList().then((data) => setSearchBarData(data));
+  }, [auth]);
 
   useEffect(() => {
     let comps: any[] = [];
@@ -49,7 +47,6 @@ const SearchBar = () => {
         </option>
       )
     );
-    // console.log(comps,prods)
     setSearchBarlist([...comps, ...prods]);
   }, [searchBarData]);
 
@@ -59,8 +56,6 @@ const SearchBar = () => {
   };
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    // console.log(e.target.value, e);
-    //   setSearchInput(e.target.value);
     let data = searchBarData?.companyList.find(
       (el: any) => el.name.toLowerCase() === e.target.value.toLowerCase()
     );
@@ -74,8 +69,6 @@ const SearchBar = () => {
   return (
     <div className="search-bar">
       <input
-        onFocus={() => setFocus(true)}
-        onBlur={() => setFocus(false)}
         type="search"
         list="search-list"
         autoComplete="off"
@@ -85,7 +78,6 @@ const SearchBar = () => {
         onChange={handleSearchChange}
       />
       <datalist id="search-list">{searchBarlist}</datalist>
-
       <img src={icons.search} alt="search icon" onClick={getSearchResult} />
     </div>
   );

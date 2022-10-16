@@ -1,4 +1,3 @@
-import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Layout from "layout/Layout";
 import "./styles/App.css";
@@ -17,15 +16,12 @@ function App() {
       <Route element={<Components.RequireAuth allowedRoles={roles} />}>
         <Route path="/*" element={<Pages.Homepage />} />
       </Route>
-      <Route path="/*" element={<Components.Missing />} />
+      <Route
+        path="*"
+        element={<Components.Missing message="Came from app.tsx" />}
+      />
       {/* </Route> */}
     </Routes>
-    // <main className="App">
-    //   <Routes>
-    //     <Route path="/login" element={<Pages.Login />} />
-    //     <Route path="/register" element={<Pages.Register />} />
-    //   </Routes>
-    // </main>
   );
 }
 

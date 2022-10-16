@@ -14,7 +14,10 @@ const IAuthContextState = {
 const AuthContext = createContext<AuthContextType>(IAuthContextState);
 
 export const AuthProvider = ({ children }: any) => {
-  const [auth, setAuth] = useState<IUserData | undefined>(undefined);
+  const local = JSON.parse(localStorage.getItem("user") || "{}");
+  const [auth, setAuth] = useState<IUserData | undefined>(
+    Object.keys(local).length === 0 ? undefined : local
+  );
   return (
     <AuthContext.Provider value={{ auth, setAuth }}>
       {children}

@@ -10,10 +10,13 @@
     display: flex;
     align-items: center;
     select {
-      width: 200px;
-      height: 30px;
-
+      width: 220px;
+      height: 44px;
+      background-color: $e-palet-whitegray-4;
+      color: $text-color-1;
+      border-radius: 10px;
       font-size: 1.1rem;
+      text-align: center;
     }
     img {
       height: 35px;

@@ -6,7 +6,10 @@ import Components from "components";
 
 const Header = () => {
   const { auth, setAuth } = useAuth();
-
+  const logOutUser = () => {
+    localStorage.removeItem("user");
+    setAuth(undefined);
+  };
   return (
     <header className="header">
       <img src={logo.etecubeLogo} alt="etecube logo" className="etecube-logo" />
@@ -21,7 +24,7 @@ const Header = () => {
           <p>{auth?.email}</p>
           <p>{auth?.role}</p>
         </div>
-        <div className="logout" onClick={() => setAuth(undefined)}>
+        <div className="logout" onClick={logOutUser}>
           <img src={icons.powerOff} alt="logout button" />
         </div>
       </div>
