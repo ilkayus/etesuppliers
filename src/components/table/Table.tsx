@@ -36,7 +36,7 @@ const Table = ({ selected, setSelected, fetchFn, type }: Props) => {
     setPageData(
       data.slice((currentPage - 1) * postsPerPage, currentPage * postsPerPage)
     );
-  }, [currentPage, postsPerPage, data]);
+  }, [currentPage, postsPerPage, data, filter]);
 
   const dataKeys = tableKeys[type === "product" ? "product" : "company"];
   const tableData = pageData.map((x, ind) =>

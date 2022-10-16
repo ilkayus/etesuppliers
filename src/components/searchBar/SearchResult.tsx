@@ -15,7 +15,7 @@ const SearchResult = () => {
       const res = search.hasOwnProperty("company")
         ? await API.product.getOneProduct(auth, search._id)
         : await API.company.getOneCompany(auth, search._id);
-      console.log(res);
+      //  console.log(res);
       return res;
     };
     setRequesting(true);

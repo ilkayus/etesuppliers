@@ -13,7 +13,7 @@ const Home = () => {
   useEffect(() => {
     const getLogs = async () => {
       const res = await API.search.getHomePageLogs(auth);
-      console.log(res);
+      // console.log(res);
       return res;
     };
     getLogs()
