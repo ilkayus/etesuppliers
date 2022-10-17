@@ -7,7 +7,6 @@ function App() {
   const roles = new Set(["user", "manager", "admin"]);
   return (
     <Routes>
-      {/* <Route path="/" element={<Layout />}> */}
       <Route path="/login" element={<Pages.Login />} />
       <Route path="/register" element={<Pages.Register />} />
       <Route path="/unauthorized" element={<Components.Unauthorized />} />
@@ -19,7 +18,6 @@ function App() {
         path="*"
         element={<Components.Missing message="Came from app.tsx" />}
       />
-      {/* </Route> */}
     </Routes>
   );
 }
