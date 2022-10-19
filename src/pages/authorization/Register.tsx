@@ -17,13 +17,32 @@ const Register = () => {
   //------------------------------
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    if (
-      !state.emailValid ||
-      !state.passwordValid ||
-      !state.usernameValid ||
-      !state.confirmPasswordValid
-    )
+    if (!state.usernameValid) {
+      dispatch({
+        type: "setFailure",
+        payload:
+          "Username must start with a letter and  must be longer than 4 characters.",
+      });
       return;
+    }
+    if (!state.emailValid) {
+      dispatch({ type: "setFailure", payload: "Email is not correct" });
+      return;
+    }
+    if (!state.passwordValid) {
+      dispatch({
+        type: "setFailure",
+        payload: "Password must be 8 characters or longer.",
+      });
+      return;
+    }
+    if (!state.confirmPasswordValid) {
+      dispatch({
+        type: "setFailure",
+        payload: "Password confirm failed.",
+      });
+      return;
+    }
     dispatch({ type: "setRequesting", payload: true });
     try {
       const res = await API.auth.register(
