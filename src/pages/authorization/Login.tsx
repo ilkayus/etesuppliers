@@ -26,8 +26,8 @@ const Login = () => {
       dispatch({ type: "setRequesting", payload: false });
       navigate(from, { replace: true });
     } catch (error: any) {
-      dispatch({ type: "setFailure", payload: error.response.statusText });
-      console.log(error);
+      dispatch({ type: "setFailure", payload: error.response.data.message });
+      console.log(error.response.data);
     }
   };
 

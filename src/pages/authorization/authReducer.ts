@@ -8,7 +8,7 @@ type AuthActionTypes =
   | { type: "password"; payload: string }
   | { type: "passwordConfirm"; payload: string }
   | { type: "setRequesting"; payload: boolean }
-  | { type: "setFailure"; payload: any };
+  | { type: "setFailure"; payload: string };
 
 const initialState = {
   inputsValidRegister: false,
@@ -80,7 +80,7 @@ const authReducer = (state: typeof initialState, action: AuthActionTypes) => {
         ...state,
         isRequesting: false,
         failure: true,
-        // failureMessage: action.payload,
+        failureMessage: action.payload,
       };
     default:
       throw new Error(`Invalid authentication state.`);

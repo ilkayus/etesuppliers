@@ -15,7 +15,7 @@ const SearchBar = () => {
   useEffect(() => {
     const getSearchBarList = async () => {
       const res = await API.search.getSearchBarData(auth);
-      console.log(res);
+      //console.log(res);
       return res;
     };
     // if (searchBarData?.length === 0 || searchBarData === undefined)
@@ -51,7 +51,7 @@ const SearchBar = () => {
   }, [searchBarData]);
 
   const getSearchResult = () => {
-    console.log("search:", selected);
+    // console.log("search:", selected);
     setSearch(selected);
   };
 
@@ -64,7 +64,7 @@ const SearchBar = () => {
         (el: any) => el.name.toLowerCase() === e.target.value.toLowerCase()
       );
     setSelected(data);
-    console.log(data);
+    //console.log(data);
   };
   return (
     <div className="search-bar">
