@@ -1,7 +1,7 @@
 import { IUserData } from "types/authorization.interface";
 
-const BASE_URL = "http://localhost:9000/api/v1";
-//const BASE_URL = "https://etecube-assignment-server.herokuapp.com/api/v1";
+//const BASE_URL = "http://localhost:9000/api/v1";
+const BASE_URL = "https://etecube-assignment-server.herokuapp.com/api/v1";
 const REGISTER_URL = "/users/register";
 const LOGIN_URL = "/users/login";
 
