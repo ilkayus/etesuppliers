@@ -1,1 +1,3 @@
-# ete[suppliers]
+#ETECube Assignment
+
+https://ilkayus.github.io/etesuppliers/
