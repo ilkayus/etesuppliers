@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/etesuppliers/static/css/main.38a80bee.css",
-    "main.js": "/etesuppliers/static/js/main.c3385c41.js",
+    "main.js": "/etesuppliers/static/js/main.104f0e04.js",
     "static/media/cube-right-bottom.png": "/etesuppliers/static/media/cube-right-bottom.04bc35ff1ed8c3f1596e.png",
     "static/media/cubes.png": "/etesuppliers/static/media/cubes.01843743d26212186062.png",
     "static/media/etekp.png": "/etesuppliers/static/media/etekp.c5ccd9275d6051ef2031.png",
     "static/media/etecube-logo.png": "/etesuppliers/static/media/etecube-logo.ed5bed58f77f0ed715b5.png",
     "static/media/suppliers.svg": "/etesuppliers/static/media/suppliers.8f434d72a56be3674d917ca78012f846.svg",
     "static/media/handshake-1939.svg": "/etesuppliers/static/media/handshake-1939.6bae920649739b969a9d7f02b7730339.svg",
-    "static/media/search-1.svg": "/etesuppliers/static/media/search-1.de87c81f5887a1c02efbeafb98a1bda5.svg",
+    "static/media/search-1.svg": "/etesuppliers/static/media/search-1.0be37871fcddd2ce5ac5693308737ea7.svg",
     "static/media/advanced-search.svg": "/etesuppliers/static/media/advanced-search.ed8f7061579903f479d808a6d6e6f562.svg",
     "static/media/star.svg": "/etesuppliers/static/media/star.11b30900fe49bb556ee5cb40a653b129.svg",
     "index.html": "/etesuppliers/index.html",
@@ -26,10 +26,10 @@
     "static/media/up-arrow.svg": "/etesuppliers/static/media/up-arrow.7d82611778bf98a532fda880b0c21f8c.svg",
     "static/media/right-arrow.svg": "/etesuppliers/static/media/right-arrow.80164bbb6c519acc5e2cae19fd2aba53.svg",
     "main.38a80bee.css.map": "/etesuppliers/static/css/main.38a80bee.css.map",
-    "main.c3385c41.js.map": "/etesuppliers/static/js/main.c3385c41.js.map"
+    "main.104f0e04.js.map": "/etesuppliers/static/js/main.104f0e04.js.map"
   },
   "entrypoints": [
     "static/css/main.38a80bee.css",
-    "static/js/main.c3385c41.js"
+    "static/js/main.104f0e04.js"
   ]
 }
